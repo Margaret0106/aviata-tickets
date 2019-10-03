@@ -1,0 +1,26 @@
+.btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.btn--small {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 2px;
+}
+
+.btn--blue {
+  color: #5763B3;
+  background: #EAF0FA; 
+}
+
+.btn--green {
+  color: #fff;
+  background: #55BB06; 
+}
