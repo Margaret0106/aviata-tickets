@@ -10,10 +10,16 @@
     font-size: 14px;
     line-height: 20px;
     font-weight: bold;
-  }
+  }  
 }
 
 .filter {
+  &--scrollable {
+    height: 270px;
+    @media (max-width: 991px) {
+      height: auto;
+    }
+  }
   &__option {
     display: block;
     font-size: 12px;
@@ -44,7 +50,7 @@
       &:after {
         content: url(../checkbox.svg);
         position: absolute;
-        left: 2px;
+        left: 1px;
         top: 1px;
         width: 8px;
         height: 7px;
@@ -54,5 +60,16 @@
   }
   &__option + &__option {
     margin-top: 15px;
+  }
+}
+
+.reset-filters {
+  color: #7284E4;
+  border-bottom: 1px dashed;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  @media (max-width: 991px)  {
+    color: #fff;
   }
 }

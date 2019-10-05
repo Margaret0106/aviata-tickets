@@ -11,33 +11,62 @@
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+  }
   &__content {
     padding: 40px 40px 20px;
-    width: 73%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 1170px) {
+      padding: 40px 20px 20px;
+    }
+    @media (max-width: 700px) {
+      width: 100%;
+    }
   }
   &__price {
-    width: 27%;
+    width: 30%;
     background: #F5F5F5;
     padding: 15px 20px;
-    text-align: center;    
+    text-align: center; 
+    @media (max-width: 700px) {
+      width: 100%;
+    }   
   }
   &__button {
     width: 100%;
+    @media (max-width: 700px) {
+      width: 200px;
+    }  
   }
   &__info {
     display: flex;
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
+    }
   }
   &__details {
     font-size: 12px;
+    margin-top: 20px;
+    @media (max-width: 480px) {     
+      text-align: center;
+    }
   }
   &__link {
     margin-right: 23px;
     color: #7284E4;
     text-decoration: none;
     border-bottom: 1px dashed;
+    @media (max-width: 480px) {     
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    &:hover {
+      opacity: .8;
+    }
   }
 }
 
@@ -57,15 +86,26 @@
 
 .baggage-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 12px;
   align-items: center;
+  .btn {
+    margin-left: 5px;
+  }
 }
 
 .carrier {
   display: flex;
   width: 20%; 
   align-items: center;
+  @media (max-width: 1024px) {
+    width: 40px;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   &__logo {
     margin-right: 15px;
     img {
@@ -74,6 +114,12 @@
   }
   &__title {
     font-size: 14px;
+    @media (max-width: 1024px) {
+      display: none;
+    }
+    @media (max-width: 480px) {
+      display: block;
+    }
   }
 }
 
@@ -83,21 +129,54 @@
   justify-content: space-between;
   padding: 0 45px 0 30px;
   align-items: center;
+  @media (max-width: 1170px) {
+    padding: 0 25px 0 20px;
+  }
+  @media (max-width: 1024px) {
+    width: calc(100% - 40px)
+  }
+  @media (max-width: 640px) {
+    padding: 0;
+  }
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    width: 100%;
+  }
   &__datetime {
     font-size: 24px;
     line-height: 33px;
     color: #202123;
     font-weight: 600;
+    @media (max-width: 480px) {
+      width: 100%;
+      text-align: center;
+    }
     span {
       font-size: 12px;
       line-height: 16px;
       font-weight: normal;
       display: block;
+      @media (max-width: 480px) {
+        display: inline-block;
+        line-height: 33px;
+        vertical-align: middle
+      }
+    }
+    span.diff-days {
+      display: inline;
+      color: rgba(255, 55, 36, 0.8);
+      font-size: 10px;
+      position: relative;
+      top: -2px;
     }
   }
   &__itinerary {
     text-align: center;
     width: 165px;
+    @media (max-width: 480px) {
+      width: 100%;
+      margin: 20px auto;
+    }
   }
   &__info {
     display: flex; 
@@ -122,6 +201,9 @@
     background: #B9B9B9;
     position: relative;
     margin-bottom: 5px;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
     &::before, &::after, span {
       width: 5px;
       height: 5px;
@@ -149,6 +231,22 @@
   &__transfer {
     color: #FF9900;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 14px;
+    span.green {
+      color: #47AC50;
+    }
+  }
+}
+
+.not-found {
+  text-align: center;
+}
+
+.non-refund {
+  color: #707276;
+  white-space: nowrap;
+  img {
+    vertical-align: bottom;
+    margin-right: 5px;
   }
 }

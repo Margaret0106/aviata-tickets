@@ -6,6 +6,8 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 25px;
+  transition: background .3s ease;
+  cursor: pointer;
 }
 
 .btn--small {
@@ -18,9 +20,46 @@
 .btn--blue {
   color: #5763B3;
   background: #EAF0FA; 
+  &:hover {
+    background: darken(#EAF0FA, 5%)
+  }
 }
 
 .btn--green {
   color: #fff;
   background: #55BB06; 
+  &:hover {
+    background: lighten(#55BB06, 5%)
+  }
+}
+
+.btn--orange {
+  color: #fff;
+  background: #FF9900; 
+  &:hover {
+    background: lighten(#FF9900, 5%)
+  }
+}
+
+.btn--round {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: none;
+  &:before, &:after {
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    display: block;
+    content: "";
+    position: absolute;   
+    left: 10px;
+    top: 18px;
+  }
+  &:before {    
+    transform: rotate(-45deg);
+  }
+  &:after {    
+    transform: rotate(45deg)
+  }
 }

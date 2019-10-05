@@ -231,7 +231,7 @@
             ],
             "stops": 0,
             "carrier": "KC",
-            "refundable": false,
+            "refundable": true,
             "traveltime": 17100.0
           }
         ]
@@ -270,7 +270,7 @@
       "bonus_accrual_details": null,
       "bonus_usage_details": null,
       "provider": "1P",
-      "refundable": false,
+      "refundable": true,
       "provider_class": "AD"
     },
     {

@@ -1,11 +1,16 @@
 <template>
   <div class="tickets__list tickets-list">    
-    <ticket 
-      v-for="flight in flights"
-      v-bind:key="flight.id"
-      v-bind:flight="flight"
-      v-bind:airlines="airlines">
-    </ticket>  
+    <div v-if="flights.length > 0">
+      <ticket
+        v-for="flight in flights"
+        v-bind:key="flight.id"
+        v-bind:flight="flight">
+      </ticket>  
+    </div>
+    <div v-else>
+      <p class="not-found">Рейсов не найдено :(</p>
+    </div>
+    
   </div>
 </template>      
 
@@ -15,7 +20,7 @@
 
   export default {
     name: 'tickets-list',
-    props: ['flights', 'airlines'],    
+    props: ['flights'],    
     components: {
       Ticket
     }
