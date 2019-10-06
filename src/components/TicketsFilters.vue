@@ -24,8 +24,8 @@
       <h4 class="filters__title">Авиакомпании</h4>
       <div class="filter filter--scrollable">
         <vuescroll :ops="ops">
-          <label class="filter__option" :key="name" v-for="(value, name) in airlines">
-            <input type="checkbox" :value="name" v-model="checkedCarriers">
+          <label v-for="(value, name) in airlines" :key="name" class="filter__option">
+            <input v-model="checkedCarriers" :value="name" type="checkbox">
             <span class="checkbox"></span>
             {{value}}
           </label>
@@ -37,14 +37,12 @@
 </template>
 
 
-<script>
-  // import Checkbox from './ui/Checkbox.vue'
+<script> 
   import vuescroll from 'vuescroll';
 
   export default {
     name: 'tickets-filters',
-    components: {
-      // Checkbox
+    components: {     
       vuescroll
     },
     data: function () {

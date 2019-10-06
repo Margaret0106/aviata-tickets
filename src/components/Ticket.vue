@@ -46,7 +46,7 @@
       <div class="ticket__details">
         <a href="" class="ticket__link">Детали перелета</a>
         <a href="" class="ticket__link">Условия тарифа</a>
-        <span class="non-refund" v-if="flight.refundable == false"> <img src="../assets/icon-non-refundeble.svg" alt="">Невозвратный</span>
+        <span v-if="flight.refundable == false" class="non-refund"> <img src="../assets/icon-non-refundeble.svg" alt="">Невозвратный</span>
       </div>           
     </div>
     <div class="ticket__price">
