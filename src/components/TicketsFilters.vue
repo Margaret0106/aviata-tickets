@@ -32,7 +32,7 @@
         </vuescroll>        
       </div>
     </div>
-    <a href="" class="reset-filters" v-on:click="resetFilters">Сбросить все фильтры</a>
+    <a href="" class="reset-filters" @click.prevent="resetFilters">Сбросить все фильтры</a>
   </div>
 </template>
 
@@ -70,18 +70,19 @@
     },
     props: {
       airlines: {
-        type: Object
+        type: Object,
+        default: () => {}
       },
       active: {
-        type: Boolean
+        type: Boolean,
+        default: () => false
       }
     },
     methods: {
-      filterFlights: function () {
+      filterFlights() {
         this.$emit('filter', this.checkedCarriers, this.checkedRefundable, this.checkedForward, this.checkedBaggage)
       },
-      resetFilters: function (e) {
-        e.preventDefault();        
+      resetFilters() {           
         this.checkedCarriers = [],
         this.checkedRefundable = false,
         this.checkedForward = false,
@@ -89,16 +90,16 @@
       }
     },
     watch: {
-      checkedCarriers: function () {
+      checkedCarriers() {
         this.filterFlights()
       },
-      checkedRefundable: function () {
+      checkedRefundable() {
         this.filterFlights()
       },
-      checkedBaggage: function () {
+      checkedBaggage() {
         this.filterFlights()
       },
-      checkedForward: function () {
+      checkedForward() {
         this.filterFlights()
       },
 

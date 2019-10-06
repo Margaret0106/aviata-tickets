@@ -5,8 +5,8 @@
         <tickets-filters :airlines="airlines" :active="activeFilters" @filter="filter" />
         <tickets-list :flights="filteredFlights"/>
         <div v-if="activeFilters" class="overlay" @click="toggleFilters"></div>
-        <button v-if="activeFilters" class="btn btn--round btn--orange close-filters" @click="toggleFilters"></button>
-        <button v-if="!activeFilters" class="btn btn--orange show-filters" @click="toggleFilters">Показать фильтры</button>
+        <button v-if="activeFilters" class="btn btn--round btn--orange close-filters" aria-label="Close filters" type="button" @click="toggleFilters"></button>
+        <button v-if="!activeFilters" class="btn btn--orange show-filters" type="button" @click="toggleFilters">Показать фильтры</button>
       </div>
     </div>
   </div>
@@ -60,14 +60,14 @@
       filterByForward(forward, flight) {
         let itinerary = flight.itineraries[Object.keys(flight.itineraries)[0]][0]   
         if (forward) {
-          return itinerary.stops == 0  
+          return itinerary.stops === 0  
         }        
         return true        
       },  
       filterByBaggage(baggage, flight) {
         let flightBaggage = flight.services[Object.keys(flight.services)[0]]    
         if (baggage) {
-          return flightBaggage.code != '0PC'
+          return flightBaggage.code !== '0PC'
         } 
         return true               
       },    

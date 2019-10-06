@@ -1,10 +1,10 @@
 <template>
-  <div class="tickets-list__item ticket">
+  <div class="ticket">
     <div class="ticket__content">
       <div class="ticket__info">
         <div class="carrier">
           <div class="carrier__logo">
-            <img :src="`https://aviata.kz/static/airline-logos/80x80/${flight.validating_carrier}.png`" alt="">
+            <img :src="logoSrc" :alt="itinerary.carrier_name">
           </div>
           <div class="carrier__title">{{itinerary.carrier_name}}</div>
         </div>
@@ -23,7 +23,7 @@
               <span></span>
             </div>
             <div class="flight__transfer">
-              <span v-if="itinerary.stops == 0" class="green">
+              <span v-if="itinerary.stops === 0" class="green">
                 прямой рейс
               </span>
               <span v-else-if="itinerary.stops > 1">
@@ -44,19 +44,19 @@
         </div>
       </div>
       <div class="ticket__details">
-        <a href="" class="ticket__link">Детали перелета</a>
-        <a href="" class="ticket__link">Условия тарифа</a>
-        <span v-if="flight.refundable == false" class="non-refund"> <img src="../assets/icon-non-refundeble.svg" alt="">Невозвратный</span>
+        <a href="#" class="ticket__link">Детали перелета</a>
+        <a href="#" class="ticket__link">Условия тарифа</a>
+        <span v-if="flight.refundable === false" class="non-refund"> <img src="../assets/icon-non-refundeble.svg" alt="non-refundable">Невозвратный</span>
       </div>           
     </div>
     <div class="ticket__price">
       <div class="price">{{flight.price}} ₸</div>
-      <button class="btn btn--green ticket__button">Выбрать</button>
+      <button class="btn btn--green ticket__button" type="button">Выбрать</button>
       <div class="price-info">Цена за всех пассажиров</div>
       <div class="baggage-info">
-        <div v-if="baggage.code == '0PC'">
+        <div v-if="baggage.code === '0PC'">
           <span>Нет багажа</span>   
-          <button class="btn btn--small btn--blue">
+          <button class="btn btn--small btn--blue" type="button">
           + Добавить багаж
           </button>        
         </div>
@@ -71,7 +71,10 @@
    export default {
     name: 'ticket',
     props: {
-      flight: Object
+      flight: {
+        type: Object,
+        default: () => {}
+      }
     },
     data: function() {
       return {
@@ -81,7 +84,7 @@
       }
     },       
     filters: {
-      formatTime: function (value) {
+      formatTime(value) {
         if (!value) return ''
         let hours, minutes, totalseconds
         hours = Math.floor(value / 3600)
@@ -89,7 +92,7 @@
         minutes = Math.floor(totalseconds / 60)
         return `${hours} ч ${minutes} м`        
       },
-      getFlightTime: function (value) {
+      getFlightTime(value) {
         const date = new Date(value)
         const leadingZero = (num) => `0${num}`.slice(-2);
 
@@ -100,7 +103,7 @@
 
         return formatedTime(date)
       },
-      getFlightDay: function (value) {
+      getFlightDay(value) {
         const weekDays = ['вс','пн','вт','ср','чт','пт','сб'] 
         const months = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек']  
         const date = new Date(value)
@@ -113,15 +116,15 @@
       }      
     },
     computed: {
-      baggage: function () {
+      baggage() {
         if (!this.flight.services) return []       
         return this.flight.services[Object.keys(this.flight.services)[0]]        
       },
-      itinerary: function () {
+      itinerary() {
         if (!this.flight.itineraries) return []       
         return this.flight.itineraries[Object.keys(this.flight.itineraries)[0]][0]
       },  
-      getAirports: function () {
+      getAirports() {
         if (!this.itinerary) return [] 
         const segments = this.itinerary.segments        
         const segmentsArray = Object.keys(segments)        
@@ -134,15 +137,18 @@
         }
         return airports
       },
-      layover: function () {        
+      layover() {        
         if (!this.itinerary.layovers) return [] 
         return this.itinerary.layovers[Object.keys(this.itinerary.layovers)[0]]
       },
-      diffDays: function () {
+      diffDays() {
         const date1 = new Date(this.itinerary.dep_date);
         const date2 = new Date(this.itinerary.arr_date);
         const diffDays = Math.abs(date2.getDate() - date1.getDate());   
         return diffDays        
+      },
+      logoSrc() {
+        return `https://aviata.kz/static/airline-logos/80x80/${this.flight.validating_carrier}.png`
       }     
     } 
   }
